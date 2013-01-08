@@ -1,12 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
+
+	<!-- <property resource="properties/log.properties" /> -->
+
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<pattern>%-4relative [%thread] %-5level %class - %msg%n</pattern>
 		</layout>
 	</appender>
 
+	<!-- <logger name="org.springframework" level="OFF"/> -->
+	<!-- <logger name="org.apache" level="OFF"/> -->
+
+	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+		<!-- <dbNameResolver class="com.acme.jset.dbresolver.CustomDBResolver" 
+			/> -->
+		<!-- ... -->
+
+		<connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+			<!-- <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource"> -->
+			<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<!-- <dataSource class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"> -->
+				<driverClass>com.mysql.jdbc.Driver</driverClass>
+				<jdbcUrl>jdbc:mysql://localhost:3306/logbackdb</jdbcUrl>
+				<user>root</user>
+				<password></password>
+				<!-- <insertHeaders>true</insertHeaders> -->
+			</dataSource>
+
+		</connectionSource>
+	</appender>
+
+
+
+
+
 	<root>
-		<level value="${log.level:-DEBUG}" />
+		<level value="TRACE" />
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="DB" />
 	</root>
+
+	
 </configuration>

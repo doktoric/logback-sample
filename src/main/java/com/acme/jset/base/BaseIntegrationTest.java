@@ -44,21 +44,21 @@ public class BaseIntegrationTest {
 
     @Before
     public void setUp() throws Exception {
-
+        logger.debug("dfsdfsdfsdfsdfsdfsdfsdf");
         File downloadDir = new File(currentWorkDir + File.separator + "downloads");
         if (!downloadDir.exists()) {
             downloadDir.mkdir();
         }
 
      
-        
+        logger.debug("dfsdfsdfsdfsdfsdfsdfsdf");
         baseUrl = "http://localhost:8080/doktorics/" ;
-
+        logger.debug("dfsdfsdfsdfsdfsdfsdfsdf");
         driver = new FirefoxDriver();
         driver.get(baseUrl);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(SELENIUM_TIMEOUT_SECS, TimeUnit.SECONDS);
-       
+        logger.debug("dfsdfsdfsdfsdfsdfsdfsdf");
         
     }
 
